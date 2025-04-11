@@ -1,14 +1,8 @@
-FROM node:18-alpine
-
-WORKDIR /app
-
-
-COPY package*.json ./
-
-RUN npm install --production 
-
-COPY . .
-
-EXPOSE 5000
-
-CMD [ "node", "app.js" ]
+FROM node
+    LABEL maintainer aaron.nole@tecsup.edu.pe
+    RUN git clone -q https://github.com/aaronnole/express-docker-app.git
+    COPY package*.json ./
+    WORKDIR /app
+    RUN npm install --production 
+    EXPOSE 5000
+    CMD [ "node", "app.js" ]
